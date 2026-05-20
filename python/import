@@ -1,0 +1,35 @@
+Python Imports are
+    Dynamic
+          as it happens during execution
+    Extensible
+          supports importing from
+                files, zip files, URLs, 
+
+sys.modules 
+        Module cache 
+sys.path
+        Where to Search
+        List of directories to search modules
+sys.meta_path
+        How to Search
+        Advanced import machinery
+            list of finder objects/classes
+            import strategies
+
+        sys.meta_path
+           contains finder objects
+        
+        One finder:
+           uses sys.path
+        
+Lazy Imports
+    Import only when needed
+Startup Imports
+    All imports happening when application starts
+Dependency
+    Importing one module often imports MANY others
+
+
+circular imports
+startup latency
+import side effects

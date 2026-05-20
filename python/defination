@@ -1,0 +1,18 @@
+Builtins
+    Functions
+    Objects
+    Types
+    Exceptions
+
+    Automatically available in Python runtime without importing
+
+    Custom
+        import builtins
+        builtins.PI = 3.14
+
+Variable Lookup Rule
+      L → Local
+      E → Enclosing
+      G → Global
+      B → Builtins
+  

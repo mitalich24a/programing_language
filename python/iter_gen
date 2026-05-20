@@ -1,0 +1,28 @@
+Lazy Evaluation
+    memory is often more expensive than CPU.
+
+Iterator
+    Object
+      that produces values one at a time 
+      can be Loop over
+
+    list
+    tuple
+    string
+    dict
+    set
+
+  Customize 
+      Protocol 
+          An object becomes iterator if it implements
+              __iter__()
+              __next__()
+
+      yield 
+          KEYWORD
+            automatically creates iterator/generator behavior than manual like above
+
+
+more MEMORY EFFICENT
+but slightly slower
+Stream Based

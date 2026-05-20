@@ -1,0 +1,57 @@
+python hello.py
+    ↓
+Shell invokes OS system call
+(execve/CreateProcess)
+    ↓
+OS Kernel loads CPython executable into memory
+    ↓
+CPU starts executing CPython machine code
+    ↓
+main()
+    ↓
+Py_Initialize()
+    ↓
+Read hello.py file from disk
+    ↓
+OS System Calls
+(open/read)
+    ↓
+Tokenizer / Lexer
+    ↓
+Tokens
+    ↓
+Parser
+    ↓
+Parse Tree
+    ↓
+AST Generator
+    ↓
+AST
+    ↓
+Compiler
+    ↓
+Bytecode Instructions
+    ↓
+.pyc cache generation (__pycache__)
+    ↓
+PyCodeObject created
+    ↓
+PyEval_EvalFrameDefault()
+(Python Virtual Machine / Eval Loop)
+    ↓
+Fetch Opcode
+    ↓
+Decode Opcode
+    ↓
+Execute Opcode
+    ↓
+C Runtime Functions
+    ↓
+OS System Calls
+(write/open/socket/mmap/read)
+    ↓
+OS Kernel
+    ↓
+CPU executes machine instructions
+    ↓
+Hardware

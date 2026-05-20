@@ -4,6 +4,13 @@ Functions are first-class objects
       returned
       assigned
 
+Argument
+      Value passed into function.
+            Positional
+                  mapped using position
+            Keyword
+                  mapped using parameter name
+
 Higher-order function
       function that either
             takes another function as argument OR 

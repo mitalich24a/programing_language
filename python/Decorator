@@ -1,0 +1,34 @@
+Functions are first-class objects
+      be stored in variables
+      passed around
+      returned
+      assigned
+
+Higher-order function
+      function that either
+            takes another function as argument OR 
+            returns a function
+
+Decorators Are Higher-Order Functions
+          takes function
+          wraps function
+          returns enhanced function
+
+          cross-cutting concerns
+          behavior injection
+
+            def decorator(func):
+            
+                def wrapper(*args, **kwargs):
+            
+                    # Before function call
+                    print("Before")
+            
+                    result = func(*args, **kwargs)
+            
+                    # After function call
+                    print("After")
+            
+                    return result
+            
+                return wrapper

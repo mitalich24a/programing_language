@@ -29,4 +29,20 @@ async python
   OpenTelemetry
 
 Iterators & Generators
+
+Comprehensions
+
+Functions are First-Class Objects
+Decorators
+Closures & Scope
+MRO
+dunder methods
+Concurrency
+__name__ == "__main__"
+import system
+sys.path
+module caching
+circular imports
+interpreter overhead
+why Python is slower
   

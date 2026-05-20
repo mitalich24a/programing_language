@@ -1,0 +1,31 @@
+Interpreter
+Runtime
+Memory Managment 
+GIL
+
+asyncIO / Multi-threading / Multi-Processing
+
+GC
+
+Decorators
+  Class Based
+  Paramaterised
+  meta Data
+
+Meta Class
+
+async python
+  asyncio 
+  await 
+  asyncio.sleep()
+  greenlet
+  asyncio.gather
+
+  Context Switch
+      yield 
+      yield from 
+
+  Context Manager
+  OpenTelemetry
+      
+  

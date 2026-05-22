@@ -1,0 +1,32 @@
+Liskov Substitution Principle
+
+      Subclasses should be replaceable without breaking behavior
+      Derived classes should be replaceable for their base classes without breaking functionality.
+      
+      Wherever a parent object is expected, a child object should work safely.
+
+Bad Example
+
+        class Vehicle:
+            def start_engine(self):
+                pass
+                
+        class Bicycle(Vehicle):
+            def start_engine(self):
+                raise Exception("No engine")
+
+Good Example
+          class Vehicle:
+              pass
+
+          class Bicycle(Vehicle):
+              pass
+
+          class EngineVehicle(Vehicle):
+              def start_engine(self):
+                  pass
+          
+          class Car(EngineVehicle):
+              pass
+          
+          

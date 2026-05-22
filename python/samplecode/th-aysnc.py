@@ -41,17 +41,18 @@ asyncio.run(main())
 ################################################################
 
 
-import asyncio
+import asyncio 
 import threading
-import time
+
+
+print(threading.current_thread().name)
 
 async def foo(a):
-	print("Hello World", a, threading.current_thread().name)
-	await asyncio.sleep(5)
-	print("Good Bye World", a, threading.current_thread().name)
+	print("Hello World", a)
+	await asyncio.sleep(2)
+	print("Good Bye World", a)
 
 async def main():
-	await asyncio.gather(foo(1), foo(2))
+	await asyncio.gather(foo(1),foo(2))
 
 asyncio.run(main())
-

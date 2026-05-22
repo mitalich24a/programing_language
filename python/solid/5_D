@@ -1,0 +1,28 @@
+Depend on abstractions, not concrete implementations.
+High-level modules should not depend on low-level modules.
+Both should depend on abstractions.
+
+Bad Example
+        class MySQLDatabase:
+            def connect(self):
+                print("Connected to MySQL")
+        
+        
+        class App:
+            def __init__(self):
+                self.db = MySQLDatabase()
+
+Good Example
+        class Database:
+            def connect(self):
+                pass
+        
+        
+        class MySQLDatabase(Database):
+            def connect(self):
+                print("Connected to MySQL")
+        
+        
+        class App:
+            def __init__(self, db: Database):
+                self.db = db

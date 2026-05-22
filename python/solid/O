@@ -1,0 +1,27 @@
+Open for extension, closed for modification.
+We should add new behavior without changing existing tested code
+
+Bad Example
+
+      class Discount:
+          def calculate(self, customer_type):
+              if customer_type == "regular":
+                  return 10
+              elif customer_type == "vip":
+                  return 20
+
+Good Example
+
+      class Discount:
+          def calculate(self):
+              pass
+      
+      
+      class RegularDiscount(Discount):
+          def calculate(self):
+              return 10
+      
+      
+      class VIPDiscount(Discount):
+          def calculate(self):
+              return 20

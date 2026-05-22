@@ -1,0 +1,30 @@
+Don’t force classes to implement methods they don’t use.
+Instead of large interfaces, create smaller focused ones.
+
+Bad Example
+          class Worker:
+              def work(self):
+                  pass
+          
+              def eat(self):
+                  pass
+          
+          
+          class Robot(Worker):
+              def eat(self):
+                  raise Exception("Robot doesn't eat")
+
+Good Example
+            class Workable:
+                def work(self):
+                    pass
+            
+            class Eatable:
+                def eat(self):
+                    pass
+            
+            class Human(Workable, Eatable):
+                pass
+            
+            class Robot(Workable):
+                pass

@@ -1,0 +1,29 @@
+A class should have only 
+      one reason to change, 
+      meaning it should handle one responsibility only
+
+Bad Example
+        class User:
+          def __init__(self, name):
+              self.name = name
+      
+          def save_to_db(self):
+              print("Saving user to database")
+      
+          def send_email(self):
+              print("Sending email")
+
+Good Example
+        class User:
+            def __init__(self, name):
+                self.name = name
+        
+        
+        class UserRepository:
+            def save(self, user):
+                print("Saving user to database")
+        
+        
+        class EmailService:
+            def send(self, user):
+                print("Sending email")

@@ -38,6 +38,7 @@ Closures & Scope
 MRO
 dunder methods
 Concurrency
+synchronisation
 __name__ == "__main__"
 import system
 sys.path

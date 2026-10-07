@@ -1,28 +1,23 @@
-import threading, time
+import threading
 
 MAX = 2
 items = []
-cond = threading.Condition()
+lock = threading.Lock()
 
-def producer():
-    for i in range(5):
-        with cond:
-            while len(items) >= MAX:      # while FULL, wait
-                print(f"Full, producer waiting before {i}...")
-                cond.wait()               # releases lock and sleeps
-            items.append(i)
-            print(f"Produced {i}  {items}")
-            cond.notify()                 # wake the consumer
+space_available = threading.Condition(lock)   # producers wait on this
+item_available  = threading.Condition(lock)   # consumers wait on this
+
+def producer(i):
+    with lock:
+        while len(items) >= MAX:              # no space
+            space_available.wait()            # wait until space is available
+        items.append(i)
+        item_available.notify()               # tell consumers: item is available
 
 def consumer():
-    for _ in range(5):
-        time.sleep(1)                     # slow consumer
-        with cond:
-            while not items:              # while EMPTY, wait
-                cond.wait()
-            item = items.pop(0)
-            print(f"    Consumed {item}  {items}")
-            cond.notify()                 # wake the producer (space is free)
-
-threading.Thread(target=producer).start()
-threading.Thread(target=consumer).start()
+    with lock:
+        while not items:                      # no item
+            item_available.wait()             # wait until an item is available
+        item = items.pop(0)
+        space_available.notify()              # tell producers: space is available
+        return item

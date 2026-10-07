@@ -1,0 +1,28 @@
+Problem : 
+          Data Corruption
+
+Examples :
+
+          Check then act
+              Connection Pool
+              LRU cache with Max-Size
+              File download Manager
+
+          Read Modify Write
+              Hit Counter
+              Bank Account
+              Metrics Aggregator
+              Inventory System
+
+Solution :
+
+          Locking
+            
+            Coarse
+                Throughput
+            Fine
+                Deadlock
+
+          Atomic Variable
+
+          Thread Confinement

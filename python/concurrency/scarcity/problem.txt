@@ -1,0 +1,34 @@
+Problem 
+    		M : ( Number of threads )  		
+        N : ( Number of Tasks )
+    		N > M 
+    		Wait until someone returns
+
+
+Solution
+    		Semaphore 
+    		Blocking Queue 
+    			  Timeout 
+	
+
+Example 
+		Limit concurrent operations
+    			Rate Limiter 
+    			Image Processing 
+    			Video Transcoding 
+			
+		Limit aggregate consumptions
+    			In-Flight Data Limiter
+    			Memory Budget for Buffers
+			
+			
+		Reuse expensive objects
+    			DB connection Pool 
+    			GPU Task Scheduler 
+			
+			
+		Maximise utilisation
+    			Work Stealing 
+    			Batching 
+    			Adaptive Sizing 
+			

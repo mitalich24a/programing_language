@@ -1,0 +1,35 @@
+Problem 
+    		Communicate and Sequence
+    		Signal
+    		Wait Efficiently
+    		One side is faster than the other.
+
+
+	while & sleep 
+    		Busy Waiting 
+        			Shorter 
+        				    CPU Burn
+        			Longer 
+        				    Sluggish
+    	
+    		OutOfMemory
+
+
+  Solution
+    		Shared State 
+      			Condition Variable 
+      			Blocking Queue
+
+
+
+Examples
+		Async Req Process
+      		Image Upload Service
+      		Payment Process
+      		Report Generation
+
+		Bursty Traffic 
+      		News Site
+      		Email Campaign 
+      		Batch Job Completion 
+      		Web-hooks

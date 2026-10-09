@@ -4,20 +4,26 @@ MAX = 2
 items = []
 lock = threading.Lock()
 
-space_available = threading.Condition(lock)   # producers wait on this
-item_available  = threading.Condition(lock)   # consumers wait on this
+space_available = threading.Condition(lock)
+item_available = threading.Condition(lock)
 
 def producer(i):
-    with lock:
-        while len(items) >= MAX:              # no space
-            space_available.wait()            # wait until space is available
+    with space_available:
+        while len(items) >= MAX:
+            space_available.wait()
+
         items.append(i)
-        item_available.notify()               # tell consumers: item is available
+        print(f"Added {i}")
+
+        item_available.notify()
 
 def consumer():
-    with lock:
-        while not items:                      # no item
-            item_available.wait()             # wait until an item is available
+    with item_available:
+        while not items:
+            item_available.wait()
+
         item = items.pop(0)
-        space_available.notify()              # tell producers: space is available
+        print(f"Removed {item}")
+
+        space_available.notify()
         return item

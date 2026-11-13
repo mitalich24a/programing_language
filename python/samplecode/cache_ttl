@@ -1,0 +1,97 @@
+
+import time
+import heapq
+import threading
+
+
+class TTLCache:
+
+    def __init__(self):
+        self.cache = {}
+        self.heap = []
+        self.lock = threading.Lock()
+
+    def put(self, key, value, ttl):
+
+        expiry = time.time() + ttl
+
+        with self.lock:
+
+            # Update dictionary
+            self.cache[key] = (value, expiry)
+
+            # Add new expiry to min heap
+            heapq.heappush(self.heap, (expiry, key))
+
+            # Compact heap if stale entries grow
+            if len(self.heap) > 2 * len(self.cache) + 100:
+                self.compact_heap()
+
+    def get(self, key):
+
+        with self.lock:
+
+            current = self.cache.get(key)
+
+            if current is None:
+                return None
+
+            value, expiry = current
+
+            if expiry <= time.time():
+                del self.cache[key]
+                return None
+
+            return value
+
+    def cleanup(self):
+
+        now = time.time()
+
+        with self.lock:
+
+            while self.heap and self.heap[0][0] <= now:
+
+                expiry, key = heapq.heappop(self.heap)
+
+                current = self.cache.get(key)
+
+                # Delete only if heap entry is current
+                if current and current[1] == expiry:
+                    del self.cache[key]
+
+    def compact_heap(self):
+
+        # Rebuild heap from valid dictionary entries
+        self.heap = [
+            (expiry, key)
+            for key, (value, expiry) in self.cache.items()
+        ]
+
+        heapq.heapify(self.heap)
+
+
+# Example usage
+
+cache = TTLCache()
+
+cache.put("A", 100, ttl=10)
+cache.put("B", 200, ttl=20)
+
+print(cache.get("A"))  # 100
+print(cache.get("B"))  # 200
+
+# Update same key
+cache.put("A", 300, ttl=30)
+
+print(cache.get("A"))  # 300
+
+# Remove expired entries
+time.sleep(11)
+cache.cleanup()
+
+print(cache.get("A"))  # 300
+print(cache.get("B"))  # None
+
+print("Heap size:", len(cache.heap))
+print("Cache size:", len(cache.cache))
